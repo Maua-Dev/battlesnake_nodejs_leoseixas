@@ -3,11 +3,19 @@ config()
 import express, { Request, Response } from 'express';
 import ServerlessHttp from 'serverless-http';
 import { STAGE } from './enums/stage_enum';
-import { router } from './routes/snake_routes'
 
 const app = express();
-app.use(express.json());
-app.use(router)
+
+app.get('/', (req: Request, res: Response) => {
+    res.json({
+        apiversion: "1",
+        author: "leozao",
+        color: "#8B0000",
+        head: "all-seeing",
+        tail: "hook",
+        version: "1.0.0"
+    })
+});
 
 app.post('/start', (req: Request, res: Response) => {
     const game = req.body.game;
